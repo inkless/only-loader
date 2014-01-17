@@ -5,7 +5,7 @@ the only loader you'll need to load scripts
 
 it's easy to use:
 
-```
+```javascript
 Loader(['a.js', 'b.js']);
 ```
 
