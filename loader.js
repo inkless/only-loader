@@ -7,13 +7,15 @@
  */
 ;(function() {
 
+	"use strict";
+
 	var // maintain all scripts need to be loaded here,
 		// some time ppl may use our loader several times in the whole page,
 		// and they hope the latter one is still dependant to the previous one,
 		// so we need to maintain all these into the same array
-		_pendingScripts = [],
+		pendingScripts = [],
 		// just for test features
-		_dumbScript = document.createElement('script'),
+		dummyScript = document.createElement('script'),
 		// find the document.head
 		head = document.head || document.getElementsByTagName('head')[0];
 
@@ -24,9 +26,9 @@
 		// if yes, try to append it to head
 		// notice: when you set src for script in IE, it will directly load the script
 		// but the script will be executed only after it's appended to the dom
-		while (_pendingScripts[0] && (_pendingScripts[0].async || _pendingScripts[0].readyState == 'loaded' || _pendingScripts[0].readyState == 'complete')) {
+		while (pendingScripts[0] && (pendingScripts[0].async || pendingScripts[0].readyState == 'loaded' || pendingScripts[0].readyState == 'complete')) {
 			// get the first script from the pending array
-			var script = _pendingScripts.shift();
+			var script = pendingScripts.shift();
 			// avoid future loading events from this script (eg, if src changes)
 			// and IE 6 memory leak
 			script.onreadystatechange = null;
@@ -37,29 +39,30 @@
 
 	// load a specific script
 	var loadScript = function(src, async) {
-		var _load = function() {
+		var load = function() {
 			// moder browsers has 'async' attribute
 			// notice: don't use an existing script here, it's dangerous, just use the dumScript
-			if ('async' in _dumbScript) { // modern browsers
+			// cannot use dummyScript.async to test, since it can be ''
+			if ('async' in dummyScript) { // modern browsers
 				var script = document.createElement('script');
 				script.type = "text/javascript";
 				script.async = async;
 				script.src = src;
 				head.appendChild(script);
-			} else if (_dumbScript.readyState) { // IE<10, IE10+ doesn't have this property
+			} else if (dummyScript.readyState) { // IE 6-9, IE10+ doesn't have this property
 				// create a script and add it to our todo pile
 				var script = document.createElement('script');
 				script.type = "text/javascript";
 				// just try to save async, this won't effect browser
 				// we'll use it when stateChange
 				script.async = async;
-				_pendingScripts.push(script);
+				pendingScripts.push(script);
 				// listen for state changes
 				script.onreadystatechange = stateChange;
 				// must set src AFTER adding onreadystatechange listener
 				// else we’ll miss the loaded event for cached scripts
 				script.src = src;
-			} else { // fall back to defer
+			} else { // fall back to defer, not sure which browsers are, maybe IE4? old ff and opera.
 				document.write('<script src="' + src + '" defer></' + 'script>');
 			}
 		};
@@ -69,9 +72,9 @@
 		// basically IE 11 and IE 10 in surface app has the problem
 		// and maybe some old browsers
 		if (document.documentMode && document.documentMode > 9)
-			setTimeout(_load, 0);
+			setTimeout(load, 0);
 		else
-			_load();
+			load();
 	};
 
 	// out loader class
@@ -82,9 +85,8 @@
 
 		if (!Object.prototype.toString.apply(scripts).toLowerCase() === '[object array]') return;
 		// load all scripts one by one
-		for (var i = 0; i < scripts.length; ++i) {
+		for (var i = 0; i < scripts.length; ++i)
 			loadScript(scripts[i], async);
-		}
 	};
 
 	// export
