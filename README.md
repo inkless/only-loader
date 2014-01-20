@@ -4,7 +4,7 @@ Only Loader
 The only loader you'll need to load scripts.
 
 ####Usage####
-It's dame easy to use:
+It's damn easy to use:
 ```javascript
 Loader(scripts, async);
 ```
