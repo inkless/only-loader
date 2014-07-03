@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Loader</title>
+	<script type="text/javascript" src="../loader.js"></script>
+</head>
+<body>
+	<div class="console"></div>
+	<script type="text/javascript">
+		Loader("jquery.js,app.js");
+	</script>
+	<script type="text/javascript">
+		Loader(function() {
+			$(".console").html($(".console").html() + "<br />" + "and inline scripts!");
+		});
+	</script>
+	<script type="text/javascript">
+		Loader("b.js");
+	</script>
+	<script type="text/javascript">
+		Loader(function() {
+			$(".console").html($(".console").html() + "<br />" + "and another inline scripts!");
+		});
+	</script>
+</body>
+</html>
