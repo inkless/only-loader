@@ -1,0 +1,1 @@
+$(".console").html($(".console").html() + "<br />" + "and another script C loaded by loader!");

@@ -1,6 +1,6 @@
 /**!
  * OnlyLoader - The only loader
- * @version v0.2 - 2014-07-01
+ * @version v0.2.1 - 2015-02-12
  * @author Guangda Zhang
  * @link https://github.com/inkless/only-loader
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -60,6 +60,7 @@
 				var script = document.createElement('script');
 				script.async = async;
 				script.src = src;
+				script.addEventListener("load", removeFromPending);
 				head.appendChild(script);
 				pendingScripts.push(script);
 
@@ -91,14 +92,23 @@
 	};
 
 	// remove the script from pendingScripts
-	var removeFromPending = function(script) {
+	var removeFromPending = function() {
 		for (var i = 0, len = pendingScripts.length; i < len; ++i) {
-			if (script === pendingScripts[i]) pendingScripts.splice(i);
+			if (this === pendingScripts[i]) {
+				pendingScripts.splice(i, 1);
+			}
 		}
 	};
 
 	// load inline scripts
+	// TODO
+	// onScriptLoad is executed too many times
+	// need to figure out a way to reduce that
 	var loadInlineScript = function(func, async) {
+		if (!pendingScripts.length) {
+			func();
+		}
+
 		// init the pending loaded number
 		var pendingLoadedNum = 0;
 
@@ -106,7 +116,7 @@
 		// reduce the pendingNumber, remove it from the pendingScripts array
 		var onScriptLoaded = function() {
 			--pendingLoadedNum;
-			removeFromPending(this);
+			removeFromPending.call(window, this);
 			// if pendingLoadedNum is 0, that means, nothing need to be loaded anymore
 			// just run the function
 			if (pendingLoadedNum === 0) func();
@@ -124,11 +134,7 @@
 		}
 		// if IE6-9, add to pendingScripts
 		else if(isOldIE) {
-			if (pendingScripts.length) {
-				pendingScripts.push(func);
-			} else {
-				func();
-			}
+			pendingScripts.push(func);
 		}
 		// the rest cases, todo
 		else {

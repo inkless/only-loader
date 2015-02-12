@@ -12,16 +12,51 @@
 	</script>
 	<script type="text/javascript">
 		Loader(function() {
-			$(".console").html($(".console").html() + "<br />" + "and inline scripts!");
+			$(".console").html($(".console").html() + "<br />" + "and 1 inline scripts!  after jq and app");
 		});
 	</script>
 	<script type="text/javascript">
-		Loader("b.js");
+		Loader("a.js,b.js,c.js");
 	</script>
 	<script type="text/javascript">
 		Loader(function() {
-			$(".console").html($(".console").html() + "<br />" + "and another inline scripts!");
+			$(".console").html($(".console").html() + "<br />" + "and 2 inline scripts! after a,b,c");
 		});
+	</script>
+	<script type="text/javascript">
+		Loader(function() {
+			$(".console").html($(".console").html() + "<br />" + "and 3 inline scripts! after 2");
+		});
+	</script>
+	<script type="text/javascript">
+		Loader(function() {
+			$(".console").html($(".console").html() + "<br />" + "and 4 inline scripts! after 3");
+		});
+	</script>
+	<script type="text/javascript">
+		Loader("d.js,e.js,f.js");
+	</script>
+	<script type="text/javascript">
+		Loader(function() {
+			$(".console").html($(".console").html() + "<br />" + "and 5 inline scripts! after d,e,f");
+		});
+	</script>
+	<script type="text/javascript">
+		Loader(function() {
+			$(".console").html($(".console").html() + "<br />" + "and 6 inline scripts! after 5");
+		});
+	</script>
+	<script type="text/javascript">
+		setTimeout(function() {
+			Loader("g.js");
+		}, 1000);
+	</script>
+	<script type="text/javascript">
+		setTimeout(function() {
+			Loader(function() {
+				$(".console").html($(".console").html() + "<br />" + "and F inline scripts! after g");
+			});
+		}, 1000);
 	</script>
 </body>
 </html>
