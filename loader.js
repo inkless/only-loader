@@ -60,7 +60,7 @@
 				var script = document.createElement('script');
 				script.async = async;
 				script.src = src;
-				script.addEventListener("load", removeFromPending);
+				script.addEventListener("load", removeFromPending.bind(undefined, script));
 				head.appendChild(script);
 				pendingScripts.push(script);
 
@@ -92,9 +92,9 @@
 	};
 
 	// remove the script from pendingScripts
-	var removeFromPending = function() {
+	var removeFromPending = function(script) {
 		for (var i = 0, len = pendingScripts.length; i < len; ++i) {
-			if (this === pendingScripts[i]) {
+			if (script === pendingScripts[i]) {
 				pendingScripts.splice(i, 1);
 			}
 		}
@@ -116,7 +116,7 @@
 		// reduce the pendingNumber, remove it from the pendingScripts array
 		var onScriptLoaded = function() {
 			--pendingLoadedNum;
-			removeFromPending.call(window, this);
+			removeFromPending(this);
 			// if pendingLoadedNum is 0, that means, nothing need to be loaded anymore
 			// just run the function
 			if (pendingLoadedNum === 0) func();
