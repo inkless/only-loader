@@ -24,7 +24,9 @@
 		// cannot use dummyScript.async to test, since it can be ''
 		isModern = 'async' in dummyScript,
 		// IE 6-9, IE10+ doesn't have this property
-		isOldIE = !!dummyScript.readyState;
+		isOldIE = !!dummyScript.readyState,
+		// is touchable
+		isTouchable = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
 	// Watch scripts load in IE
 	var stateChange = function() {
@@ -85,7 +87,7 @@
 		// without setTimeout, the execution order sucks, we have to add the setTimeout to keep it in order
 		// basically IE 11 and IE 10 in surface app has the problem
 		// and maybe some old browsers
-		if (document.documentMode && document.documentMode > 9)
+		if (isTouchable && document.documentMode && document.documentMode > 9)
 			setTimeout(load, 0);
 		else
 			load();
