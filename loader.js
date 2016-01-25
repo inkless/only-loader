@@ -55,9 +55,9 @@
 	}
 
 	// load a specific script
-	var loadScript = function(src, async) {
+	var loadExternalScript = function(src, async) {
 		var load = function() {
-			
+
 			if (isModern) { // modern browsers
 				var script = document.createElement('script');
 				script.async = async;
@@ -144,25 +144,37 @@
 		}
 	};
 
+	var loadScript = function(script, async) {
+		if (typeof script === "function") {
+			loadInlineScript(script);
+		}
+
+		if (typeof script === "string") {
+			loadExternalScript(script, async);
+		}
+	};
+
 	// Class Loader
 	// if async is true, scripts will be executed as soon as it arrives
 	// if async is false, scripts will be executed in order
 	var Loader = function(scripts, async) {
-		// if it's string, just split it
-		if (typeof scripts === "string")
-			scripts = scripts.split(",");
-
 		// if the scripts is a function
 		// that means its inline scripts
 		// also, we assume all inline scripts require non async,
 		// otherwise users can just write the scripts without calling Loader
 		if (typeof scripts === "function") {
-			loadInlineScript(scripts);
+			loadScript(scripts);
+		}
+
+		// if it's string, just split it
+		if (typeof scripts === "string") {
+			scripts = scripts.split(",");
 		}
 
 		// load all scripts one by one
-		for (var i = 0; i < scripts.length; ++i)
+		for (var i = 0; i < scripts.length; ++i) {
 			loadScript(scripts[i], !!async);
+		}
 	};
 
 	// export

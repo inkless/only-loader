@@ -8,15 +8,9 @@
 <body>
 	<div class="console"></div>
 	<script type="text/javascript">
-		Loader("jquery.js,app.js");
-	</script>
-	<script type="text/javascript">
-		Loader(function() {
+		Loader(["jquery.js","app.js", function() {
 			$(".console").html($(".console").html() + "<br />" + "and 1 inline scripts!  after jq and app");
-		});
-	</script>
-	<script type="text/javascript">
-		Loader("a.js,b.js,c.js");
+		}, "a.js", "b.js", "c.js"]);
 	</script>
 	<script type="text/javascript">
 		Loader(function() {

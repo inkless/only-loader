@@ -16,6 +16,9 @@ Loader(scripts, async);
 ```javascript
 Loader(['a.js', 'b.js']); // Load codes asynchronously but executes in order
 Loader('a.js,b.js', true); // Load codes asynchronously and executes as soon as possible
+Loader(['a.js', 'b.js', function() {
+  // do something after a, b
+}, 'c.js', 'd.js']); // Load a and b, then execute the function, then load c and d
 ```
 
 Just try it!
