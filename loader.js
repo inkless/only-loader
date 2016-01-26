@@ -1,6 +1,6 @@
 /**!
  * OnlyLoader - The only loader
- * @version v0.2.1 - 2015-02-12
+ * @version v0.3.0 - 2016-01-15
  * @author Guangda Zhang
  * @link https://github.com/inkless/only-loader
  * @license MIT License, http://www.opensource.org/licenses/MIT
