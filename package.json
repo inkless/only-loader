@@ -23,7 +23,7 @@
     "url": "https://github.com/inkless/only-loader/issues"
   },
   "homepage": "https://github.com/inkless/only-loader",
-  "dependencies": {
+  "devDependencies": {
     "uglify-js": "^2.6.1"
   }
 }

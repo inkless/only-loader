@@ -3,7 +3,7 @@ Only Loader
 
 The only loader you'll need to load scripts.
 
-####Usage####
+#### Usage
 It's damn easy to use:
 ```javascript
 Loader(scripts, async);
@@ -11,7 +11,7 @@ Loader(scripts, async);
 `scripts`: The scripts you want to load, it can be array or string (split by common)
 `async`: Executes the codes asynchronously or not (in order)
 
-####Example####
+#### Example
 
 ```javascript
 Loader(['a.js', 'b.js']); // Load codes asynchronously but executes in order
@@ -22,3 +22,10 @@ Loader(['a.js', 'b.js', function() {
 ```
 
 Just try it!
+
+
+#### Development
+```bash
+npm install
+npm run compress
+```
