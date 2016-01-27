@@ -1,7 +1,7 @@
 Only Loader
 ===========
 
-[![Build Status](https://travis-ci.org/inkless/only-loader.svg?branch=master)](http://travis-ci.org/inkless/only-loader)
+[![Build Status](https://api.travis-ci.org/inkless/only-loader.svg?branch=master)](http://travis-ci.org/inkless/only-loader)
 [![Dependency Status](https://david-dm.org/inkless/only-loader.svg)](https://david-dm.org/inkless/only-loader)
 [![devDependency Status](https://david-dm.org/inkless/only-loader/dev-status.svg)](https://david-dm.org/inkless/only-loader#dev-badge-embed=&info=devDependencies&view=table)
 
