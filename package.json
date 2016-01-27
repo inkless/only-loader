@@ -1,13 +1,13 @@
 {
   "name": "only-loader",
-  "version": "3.1.0",
+  "version": "0.3.0",
   "description": "the only loader you need",
   "main": "loader.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start karma.conf.js",
     "compress": "uglifyjs  loader.js --comments --compress  --mangle -o  loader.min.js"
   },
   "repository": {
@@ -24,6 +24,11 @@
   },
   "homepage": "https://github.com/inkless/only-loader",
   "devDependencies": {
+    "jasmine": "^2.4.1",
+    "karma": "^0.13.19",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6",
+    "karma-spec-reporter": "0.0.23",
     "uglify-js": "^2.6.1"
   }
 }

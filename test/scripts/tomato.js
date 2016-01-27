@@ -1,0 +1,1 @@
+loaderConsole.log('tomato');

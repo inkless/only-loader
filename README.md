@@ -1,6 +1,10 @@
 Only Loader
 ===========
 
+[![Build Status](https://travis-ci.org/inkless/only-loader.svg?branch=master)](http://travis-ci.org/inkless/only-loader)
+[![Dependency Status](https://david-dm.org/inkless/only-loader.svg)](https://david-dm.org/inkless/only-loader)
+[![devDependency Status](https://david-dm.org/inkless/only-loader/dev-status.svg)](https://david-dm.org/inkless/only-loader#dev-badge-embed=&info=devDependencies&view=table)
+
 The only loader you'll need to load scripts.
 
 #### Usage
@@ -8,7 +12,7 @@ It's damn easy to use:
 ```javascript
 Loader(scripts, async);
 ```
-`scripts`: The scripts you want to load, it can be array or string (split by common)
+`scripts`: The scripts you want to load, it can be array or string (split by comma)
 `async`: Executes the codes asynchronously or not (in order)
 
 #### Example
