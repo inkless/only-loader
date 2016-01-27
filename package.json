@@ -1,0 +1,29 @@
+{
+  "name": "only-loader",
+  "version": "3.1.0",
+  "description": "the only loader you need",
+  "main": "loader.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compress": "uglifyjs  loader.js --comments --compress  --mangle -o  loader.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inkless/only-loader.git"
+  },
+  "keywords": [
+    "loader"
+  ],
+  "author": "Guangda Zhang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inkless/only-loader/issues"
+  },
+  "homepage": "https://github.com/inkless/only-loader",
+  "dependencies": {
+    "uglify-js": "^2.6.1"
+  }
+}
