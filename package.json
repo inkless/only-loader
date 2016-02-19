@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "karma start karma.conf.js",
-    "compress": "uglifyjs  loader.js --comments --compress  --mangle -o  loader.min.js"
+    "compress": "uglifyjs  loader.js --comments --compress evaluate=false --mangle -o  loader.min.js"
   },
   "repository": {
     "type": "git",
