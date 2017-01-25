@@ -27,6 +27,8 @@ Loader(['a.js', 'b.js', function() {
 
 Just try it!
 
+#### Todo
+Add this to npm
 
 #### Development
 ```bash
